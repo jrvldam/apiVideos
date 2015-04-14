@@ -11,11 +11,13 @@ app.set('views', __dirname + '/views');
 
 app.get('/', function(req ,res)
 {
-	videos.getVideos(function(err, obj, pag)
+	var pag = req.params.page || 1;
+
+	videos.getVideos(function(err, obj)
 	{
 		obj = videos.jsonFormat(obj);
 		res.render('index', { obj:obj });
-	});
+	}, pag);
 });
 
 app.set('port', process.env.PORT || 3000);
