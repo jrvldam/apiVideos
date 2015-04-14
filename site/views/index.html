@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>VIDEOS RTVE</title>
+	<style type="text/css">
+		.item{
+			border: 1px dotted #444;
+			margin: 3%;
+			padding: 3%;
+		}
+		img{
+			display: inline;
+			margin-right: 2%;
+			border: 2px solid #666;
+		}
+		.item div{
+			display: inline-block;
+		}
+	</style>
+</head>
+<body>
+	{% for itemm in obj.items %}
+		<div class="item">
+			<a href="{{ itemm.htmlUrl }}">
+				<img src="{{ itemm.thumbnail }}" alt="{{ itemm.alt }}" height="100">
+			</a>
+			<div>
+				<a href="{{ itemm.htmlUrl }}"><h4>{{ itemm.longTitle }}</h4></a>
+			</div>
+		</div>
+	{% endfor %}
+	{% if pag > 0%}
+		<form>
+			<button type="submit" action="/?page={{ pag + 1 }}">Siguiente</button>
+		</form>
+	{% endif %}
+</body>
+</html>

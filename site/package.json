@@ -1,0 +1,12 @@
+{
+  "name": "apiVideo",
+  "version": "0.0.1",
+  "description": "Acceso a la API de RTVE",
+  "main": "app.js",
+  "author": "rodrigo",
+  "license": "GNU-GPL",
+  "dependencies": {
+    "express": "4.12.x",
+    "swig": "1.4.x"
+  }
+}
