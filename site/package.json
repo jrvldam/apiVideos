@@ -4,6 +4,10 @@
   "description": "Acceso a la API de RTVE",
   "main": "app.js",
   "author": "rodrigo",
+  "repostitory": {
+    "type": "git",
+    "url": "https://github.com/jrvldam/apiVideos.git"
+  },
   "license": "GNU-GPL",
   "dependencies": {
     "express": "4.12.x",

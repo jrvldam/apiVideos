@@ -2,9 +2,10 @@ var http = require('http');
 
 function getVideos(callback, pag)
 {
-	var SIZE = 5;
+	var SIZE = 4;
 	var _params = '?page=' + pag + '&size=' + SIZE;
 	var url = 'http://www.rtve.es/api/videos.json' + _params;
+	console.log('getVideos: ' + url);
 	http.get(url, function(res)
 	{
 		var videos = '';
@@ -20,7 +21,7 @@ function getVideos(callback, pag)
 	});
 }
 
-function jsonFormat(obj)
+function jsonFormat(obj, pag)
 {
 	var listaDest = [];
 	var listaOrig = obj.items;
@@ -39,7 +40,8 @@ function jsonFormat(obj)
 
 	var objFin = {
 		items: listaDest
-		,numItems: obj.size
+		, numItems: obj.size
+		, pag: pag
 	};
 	return objFin;
 };

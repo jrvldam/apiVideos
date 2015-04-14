@@ -6,16 +6,17 @@
 	<style type="text/css">
 		.item{
 			border: 1px dotted #444;
-			margin: 3%;
-			padding: 3%;
+			margin: 2%;
+			padding: 1%;
 		}
 		img{
 			display: inline;
 			margin-right: 2%;
 			border: 2px solid #666;
 		}
-		.item div{
+		.item #titulo{
 			display: inline-block;
+			vertical-align: middle;
 		}
 	</style>
 </head>
@@ -25,14 +26,16 @@
 			<a href="{{ itemm.htmlUrl }}">
 				<img src="{{ itemm.thumbnail }}" alt="{{ itemm.alt }}" height="100">
 			</a>
-			<div>
-				<a href="{{ itemm.htmlUrl }}"><h4>{{ itemm.longTitle }}</h4></a>
-			</div>
+			<a href="{{ itemm.htmlUrl }}" id="titulo"><h4>{{ itemm.longTitle }}</h4></a>
 		</div>
 	{% endfor %}
-	{% if pag > 0%}
-		<form>
-			<button type="submit" action="/?page={{ pag + 1 }}">Siguiente</button>
+	<form action="index?page={{ obj.pag + 1 }}" method="get">
+		<input type="submit" value="Siguiente {{ obj.pag + 1 }}">
+		?page={{ obj.pag + 1 }}
+	</form>
+	{% if obj.pag > 1 %}
+		<form action="index?page={{ obj.pag - 1 }}" method="get">
+			<button>{{ obj.pag - 1 }} Anterior</button>
 		</form>
 	{% endif %}
 </body>

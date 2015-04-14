@@ -11,13 +11,21 @@ app.set('views', __dirname + '/views');
 
 app.get('/', function(req ,res)
 {
-	var pag = req.params.page || 1;
+	res.redirect('/index');
+});
 
+app.get('/index', function(req ,res)
+{
+	//console.log(req.params.page);
+	console.log(req.query.page);
+	var pag = req.query.page || 1;
+	
 	videos.getVideos(function(err, obj)
 	{
-		obj = videos.jsonFormat(obj);
+		obj = videos.jsonFormat(obj, pag);
 		res.render('index', { obj:obj });
-	}, pag);
+	}
+	, pag);
 });
 
 app.set('port', process.env.PORT || 3000);
