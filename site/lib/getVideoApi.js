@@ -1,10 +1,11 @@
 var http = require('http');
-
+// DEVUELVE EL CALLBACK CON LA PROPIEDAD PAGE DEL OBJETO DE LA RESPUESTA
 function getVideos(callback, pag)
 {
-	var SIZE = 4;
+	var SIZE = 4; // NUMERO DE ELEMENTOS EN LA PETICION
 	var _params = '?page=' + pag + '&size=' + SIZE;
 	var url = 'http://www.rtve.es/api/videos.json' + _params;
+	
 	http.get(url, function(res)
 	{
 		var videos = '';
@@ -19,7 +20,7 @@ function getVideos(callback, pag)
 		});
 	});
 }
-
+// FORMATEA EL JSON PARA ENVIAR LO EN LA RESPUESTA
 function jsonFormat(obj, pag)
 {
 	var listaDest = [];
@@ -44,6 +45,6 @@ function jsonFormat(obj, pag)
 	};
 	return objFin;
 };
-
+// EXPORTA LAS FUNCIONES PARA USRALAS COMO METODOS DE CLASE
 exports.getVideos = getVideos;
 exports.jsonFormat = jsonFormat;
