@@ -12,6 +12,7 @@
 		body > a:nth-last-child(2){ margin-left: 9%; }
 		body > a:last-of-type{ float: right; margin-right: 9%; }
 	</style>
+	<link rel="stylesheet" type="text/css" src="styles/index.css">
 </head>
 <body>
 	{% for itemm in obj.items %}
@@ -22,14 +23,12 @@
 			<a href="{{ itemm.htmlUrl }}" id="titulo"><h4>{{ itemm.longTitle }}</h4></a>
 		</div>
 	{% endfor %}
-	<form action="index?page={{ obj.pag + 1 }}" method="get">
-		<input type="submit" value="Siguiente {{ obj.pag + 1 }}">
-		?page={{ obj.pag + 1 }}
-	</form>
+
 	{% if obj.pag > 1 %}
-		<form action="index?page={{ obj.pag - 1 }}" method="get">
-			<button>{{ obj.pag - 1 }} Anterior</button>
-		</form>
+		<a href="index?page={{ obj.pag - 1 }}" class="butt">{{ obj.pag - 1 }} página anterior</a>
 	{% endif %}
+
+	<a href="index?page={{ obj.pag + 1 }}" class="butt">siguiente página {{ obj.pag + 1 }}</a>
+	
 </body>
 </html>

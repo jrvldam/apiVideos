@@ -5,7 +5,6 @@ function getVideos(callback, pag)
 	var SIZE = 4;
 	var _params = '?page=' + pag + '&size=' + SIZE;
 	var url = 'http://www.rtve.es/api/videos.json' + _params;
-	console.log('getVideos: ' + url);
 	http.get(url, function(res)
 	{
 		var videos = '';

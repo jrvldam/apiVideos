@@ -16,9 +16,7 @@ app.get('/', function(req ,res)
 
 app.get('/index', function(req ,res)
 {
-	//console.log(req.params.page);
-	console.log(req.query.page);
-	var pag = req.query.page || 1;
+	var pag = Number(req.query.page) || 1;
 	
 	videos.getVideos(function(err, obj)
 	{
