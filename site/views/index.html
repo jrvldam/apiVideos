@@ -18,9 +18,9 @@
 	{% for itemm in obj.items %}
 		<div class="item">
 			<a href="{{ itemm.htmlUrl }}">
-				<img src="{{ itemm.thumbnail }}" alt="{{ itemm.alt }}" height="100">
+				<img src="{{ itemm.thumbnail }}" target="_blank" alt="{{ itemm.alt }}" height="100">
 			</a>
-			<a href="{{ itemm.htmlUrl }}" id="titulo"><h4>{{ itemm.longTitle }}</h4></a>
+			<a href="{{ itemm.htmlUrl }}" target="_blank" id="titulo"><h4>{{ itemm.longTitle }}</h4></a>
 		</div>
 	{% endfor %}
 

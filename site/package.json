@@ -4,13 +4,14 @@
   "description": "Acceso a la API de RTVE",
   "main": "app.js",
   "author": "rodrigo",
-  "repostitory": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/jrvldam/apiVideos.git"
   },
-  "license": "GNU-GPL",
+  "license": "MIT",
   "dependencies": {
     "express": "4.12.x",
+    "mongodb": "^2.0.27",
     "swig": "1.4.x"
   }
 }

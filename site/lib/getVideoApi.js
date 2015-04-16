@@ -15,16 +15,16 @@ function getVideos(callback, pag)
 		});
 		res.on('end', function()
 		{
-			videos = JSON.parse(videos);
-			return callback(null, videos.page);
+			videos = jsonFormat(JSON.parse(videos), pag);
+			return callback(null, videos);
 		});
 	});
 }
-// FORMATEA EL JSON PARA ENVIAR LO EN LA RESPUESTA
+// FORMATEA EL JSON PARA ENVIARLO EN LA RESPUESTA
 function jsonFormat(obj, pag)
 {
 	var listaDest = [];
-	var listaOrig = obj.items;
+	var listaOrig = obj.page.items;
 	for(var i = 0; i < listaOrig.length; i++)
 	{
 		var aux = {
@@ -40,11 +40,10 @@ function jsonFormat(obj, pag)
 
 	var objFin = {
 		items: listaDest
-		, numItems: obj.size
+		, numItems: obj.page.size
 		, pag: pag
 	};
 	return objFin;
 };
-// EXPORTA LAS FUNCIONES PARA USRALAS COMO METODOS DE CLASE
+// EXPORTA LA FUNCION PARA USRALA COMO METODO DE CLASE
 exports.getVideos = getVideos;
-exports.jsonFormat = jsonFormat;
