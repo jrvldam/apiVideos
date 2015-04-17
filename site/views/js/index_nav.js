@@ -31,15 +31,12 @@ function printCont(http)
 		divCont.innerHTML = conTxt;
 
 		var btnFw = document.getElementById('btnFw');
-		var va = obj.pag + 1;
-		btnFw.setAttribute('href','javascript:getCont(' + va + ')');
-		btnFw.textContent = 'siguiente página ' + va;
+		btnFw.setAttribute('href','javascript:getCont(' + (obj.pag + 1) + ')');
+		btnFw.textContent = 'siguiente página ' + (obj.pag + 1);
 
 		var btnBack = document.getElementById('btnBack');
-		var viene = obj.pag - 1;
-		btnBack.setAttribute('href', 'javascript:getCont(' + viene + ')');
-		btnBack.textContent =  viene + ' página anterior';
-
+		btnBack.setAttribute('href', 'javascript:getCont(' + (obj.pag - 1) + ')');
+		btnBack.textContent =  (obj.pag - 1) + ' página anterior';
 		if(obj.pag > 1)
 		{
 			document.getElementById('btnBack').style.display = 'initial';
@@ -49,12 +46,14 @@ function printCont(http)
 			document.getElementById('btnBack').style.display = 'none';
 		}
 	}
+	return false;
 }
 
 function getCont(page)
 {
+	// INSTANCIA DE HTTPREQUEST
 	var http = getHTTP();
-	var pag = page || 1
+	var pag = page || 1;
 	var url = 'http://localhost:3000/contenido?page=' + pag;
 
 	http.onreadystatechange = function()
@@ -64,6 +63,7 @@ function getCont(page)
 
 	http.open('get', url, true);
 	http.send(null);
+	return false;
 }
 
 window.onload = getCont;
