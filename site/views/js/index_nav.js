@@ -17,11 +17,10 @@ function printCont(http)
 	if(http.readyState == 4 && http.status == 200) 
 	{
 		var obj = JSON.parse(http.responseText);
-		console.log(obj.pag);
-		var cont = '';
+		var conTxt = '';
 		for(var i = 0; i < obj.items.length; i++)
 		{
-			cont += '<div class="item">\n'
+			conTxt += '<div class="item">\n'
 						+'<a href="' + obj.items[i].htmlUrl + '">\n'
 							+'<img src="' + obj.items[i].thumbnail + '" target="_blank" alt="' + obj.items[i].alt + '" height="100">\n'
 						+'</a>\n'
@@ -29,27 +28,25 @@ function printCont(http)
 					+'</div>\n';
 		}
 		var divCont = document.getElementById("contenido");
-		divCont.innerHTML = cont;
+		divCont.innerHTML = conTxt;
 
 		var btnFw = document.getElementById('btnFw');
-		btnFw.setAttribute('href','javascript:getCont(' + (obj.pag + 1) + ')');
-		btnFw.textContent = 'siguiente página ' + (obj.pag + 1);
+		var va = obj.pag + 1;
+		btnFw.setAttribute('href','javascript:getCont(' + va + ')');
+		btnFw.textContent = 'siguiente página ' + va;
 
-		if(document.getElementById('btnBack'))
-		{
-			var padre = btnFw.parentNode;
-			padre.removeChild(document.getElementById('btnBack'));
-		}
+		var btnBack = document.getElementById('btnBack');
+		var viene = obj.pag - 1;
+		btnBack.setAttribute('href', 'javascript:getCont(' + viene + ')');
+		btnBack.textContent =  viene + ' página anterior';
+
 		if(obj.pag > 1)
 		{
-			var btnBack = document.createElement('a');
-			var txt = document.createTextNode((obj.pag - 1) + ' página anterior');
-			btnBack.setAttribute('href', 'javascript:getCont(' + (obj.pag + 1) + ')');
-			btnBack.setAttribute('class', 'butt');
-			btnBack.setAttribute('id', 'btnBack');
-			btnBack.appendChild(txt);
-			var btnPages = btnFw.parentNode;
-			btnPages.insertBefore(btnBack, btnFw);
+			document.getElementById('btnBack').style.display = 'initial';
+		}
+		else
+		{
+			document.getElementById('btnBack').style.display = 'none';
 		}
 	}
 }
