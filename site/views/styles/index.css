@@ -1,8 +1,9 @@
 body{ margin-bottom: 8%; background-color: #555; }
 .item{ background-color: #aaa; border: 1px solid #444; border-radius: 15px; margin: 2%; padding: 2% 1% 0% 1%; }
+.visited{ background-color: #444; border: 1px solid #444; border-radius: 15px; margin: 2%; padding: 2% 1% 0% 1%; }
 img{ display: inline; margin-right: 2%; border: 2px solid #666; }
-.item #titulo{ display: inline-block; text-decoration: none; color: #222; }
+.item h4{ display: inline-block; text-decoration: none; color: #222; }
+.visited h4{ display: inline-block; text-decoration: none; color: #222; }
 .butt{ padding: 0.3em 0.7em; background-color: #eee; border: 1px solid #AAA; text-decoration: none; color: #333; border-radius: 10px; }
-.hide{ display: none; }
 #btnBack{ margin-left: 9%; }
 #btnFw{ float: right; margin-right: 9%; }

@@ -29,6 +29,7 @@ function jsonFormat(obj, pag)
 	{
 		var aux = {
 			htmlUrl: listaOrig[i].htmlUrl
+			, id: listaOrig[i].id
 			, longTitle: listaOrig[i].longTitle
 			, thumbnail: listaOrig[i].thumbnail
 			, contentType: listaOrig[i].contentType
@@ -36,6 +37,7 @@ function jsonFormat(obj, pag)
 			, description: listaOrig[i].description
 		};
 		listaDest.push(aux);
+		console.log(listaOrig[i].id + '\n');
 	}
 
 	var objFin = {
