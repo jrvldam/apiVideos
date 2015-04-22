@@ -29,7 +29,6 @@ function setLink(elem)
 		if(localStorage.visited)// SI YA EXISTE LA VARIABLE
 		{
 			var vstd = JSON.parse(localStorage.visited);
-			//var aux = isVisited(id);
 			if(!isVisited(id))
 			{
 				vstd.push(id);
@@ -67,7 +66,6 @@ function printCont(http)
 	if(http.readyState == 4 && http.status == 200) 
 	{
 		var obj = JSON.parse(http.responseText);
-		//console.log(new Date() + ' ID: ' + obj.items[0].id + ' - IDFLAG: ' + idFlag);
 		if(hasNews(Number(obj.items[0].id), obj.check))
 		{
 			var divCont = document.getElementById("contenido");
@@ -86,7 +84,6 @@ function printCont(http)
 				var h4 = document.createElement('h4');
 				var textH4 = document.createTextNode(obj.items[i].longTitle);
 				h4.appendChild(textH4);
-				
 				var div = document.createElement('div');
 				div.setAttribute('id', obj.items[i].id);
 				if(isVisited(obj.items[i].id)) // PINTA EL ITEM SEGUN SI HA SIDO VISITADO YA O NO
@@ -100,21 +97,19 @@ function printCont(http)
 				div.setAttribute('onclick', 'setLink(this);');
 				div.appendChild(img);
 				div.appendChild(h4);
-
 				var a = document.createElement('a');
 				a.setAttribute('href', obj.items[i].htmlUrl);
 				a.setAttribute('target', '_blank');
 				a.appendChild(div);
-				
 				divCont.appendChild(a);
 			}
 			// MODIFICA LOS BOTONES PARA LA PAGiNACION
 			var btnFw = document.getElementById('btnFw');
-			btnFw.setAttribute('href','javascript:getCont(' + (obj.pag + 1) + ')');
+			btnFw.setAttribute('href','javascript: void getCont(' + (obj.pag + 1) + ')');
 			btnFw.textContent = 'siguiente página ' + (obj.pag + 1);
 
 			var btnBack = document.getElementById('btnBack');
-			btnBack.setAttribute('href', 'javascript:getCont(' + (obj.pag - 1) + ')');
+			btnBack.setAttribute('href', 'javascript: void getCont(' + (obj.pag - 1) + ')');
 			btnBack.textContent =  (obj.pag - 1) + ' página anterior';
 			if(obj.pag > 1)
 			{
@@ -131,19 +126,19 @@ function printCont(http)
 
 function getCont(page, check)
 {
-	// INSTANCIA DE HTTPREQUEST
 	var http = getHTTP();
-	var check = (check)? '&check=1' : '';
-	console.log(check);
-	var pag = page || 1;
-	var url = 'http://localhost:3000/contenido?page=' + pag + check;
-	http.onreadystatechange = function()
+	if(http)
 	{
-		return printCont(http);
+		var pag = page || 1;
+		var check = (check)? '&check=1' : '';
+		var url = '/contenido?page=' + pag + check;
+		http.onreadystatechange = function()
+		{
+			return printCont(http);
+		}
+		http.open('get', url, true);
+		http.send(null);
 	}
-
-	http.open('get', url, true);
-	http.send(null);
 	return false;
 }
 
@@ -151,7 +146,7 @@ function hasNews(idProspect, check)
 {
 	if(check)
 	{
-		console.log('idProspect: ' + idProspect + ', idFlag: ' + idFlag);
+		console.log('nuevo: ' + idProspect + ', actual: ' + idFlag);
 		if(idProspect === idFlag)
 		{
 			return false;
